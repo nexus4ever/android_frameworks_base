@@ -68,5 +68,12 @@
     <string name="accessibility_quick_settings_network_adb_on">ADB over network on.</string>
     <string name="accessibility_quick_settings_network_adb_changed_off">ADB over network turned off.</string>
     <string name="accessibility_quick_settings_network_adb_changed_on">ADB over network turned on.</string>
+
+    <!-- USB tether QS tile -->
+    <string name="accessibility_quick_settings_usb_tether_off">USB tethering off</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB tethering on</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering turned off</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering turned on</string>
+    <string name="quick_settings_usb_tether_label">USB tethering</string>
 </resources>
 
