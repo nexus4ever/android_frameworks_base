@@ -92,6 +92,8 @@ import android.os.IBinder;
 import android.os.Messenger;
 import android.os.RemoteException;
 
+import com.android.internal.util.n4e.OnTheGoActions;
+
 /**
  * Helper to show the global actions dialog.  Each item is an {@link Action} that
  * may show depending on whether the keyguard is showing, and whether the device
@@ -302,8 +304,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 }
             }
 
-
-
             public boolean showDuringKeyguard() {
                 return true;
             }
@@ -315,6 +315,36 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         onAirplaneModeChanged();
 
         mItems = new ArrayList<Action>();
+
+        // next: On-The-Go, if enabled
+        boolean showOnTheGo = Settings.System.getInt(
+                mContext.getContentResolver(),
+                        Settings.System.POWERMENU_ONTHEGO_ENABLED, 0) == 1;
+        if (showOnTheGo) {
+            mItems.add(
+                new SinglePressAction(com.android.internal.R.drawable.ic_lock_onthego,
+                        R.string.global_action_onthego) {
+
+                        public void onPress() {
+                            OnTheGoActions.processAction(mContext,
+                                    OnTheGoActions.ACTION_ONTHEGO_TOGGLE);
+                        }
+
+                        public boolean onLongPress() {
+                            return false;
+                        }
+
+                        public boolean showDuringKeyguard() {
+                            return true;
+                        }
+
+                        public boolean showBeforeProvisioning() {
+                            return true;
+                        }
+                    }
+            );
+        }
+
         String[] defaultActions = mContext.getResources().getStringArray(
                 com.android.internal.R.array.config_globalActionsList);
 
@@ -818,6 +848,15 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 }
             }
         }
+    }
+
+    private void startOnTheGo() {
+        final ComponentName cn = new ComponentName("com.android.systemui",
+                "com.android.systemui.n4e.onthego.OnTheGoService");
+        final Intent startIntent = new Intent();
+        startIntent.setComponent(cn);
+        startIntent.setAction("start");
+        mContext.startService(startIntent);
     }
 
     final Object mScreenshotLock = new Object();

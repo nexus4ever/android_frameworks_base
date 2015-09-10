@@ -46,6 +46,7 @@
   <java-symbol type="string" name="global_action_current_user" />
   <java-symbol type="string" name="global_action_assist" />
   <java-symbol type="string" name="global_action_voice_assist" />
+  <java-symbol type="string" name="global_action_onthego" />
 
   <!-- Config Power Menu drawables-->
   <java-symbol type="drawable" name="ic_lock_power_screenshot" />
@@ -55,6 +56,7 @@
   <java-symbol type="drawable" name="ic_lock_power_reboot" />
   <java-symbol type="drawable" name="ic_lock_torch" />
   <java-symbol type="drawable" name="ic_settings_powermenu" />
+  <java-symbol type="drawable" name="ic_lock_onthego" />
 
   <!-- Automatic brightness enhancements -->
   <java-symbol type="integer" name="config_autoBrightnessBrighteningLightFastDebounce"/>
