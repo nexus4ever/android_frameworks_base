@@ -140,12 +140,14 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 import com.android.internal.R;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.policy.PhoneWindow;
 import com.android.internal.policy.IShortcutService;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.util.nitrogen.ActionUtils;
+import com.android.internal.util.nitrogen.DevUtils;
 import com.android.internal.util.ScreenShapeHelper;
 import com.android.internal.widget.PointerLocationView;
 import com.android.server.GestureLauncherService;
@@ -500,7 +502,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     int mBackKillTimeout;
     int mCustomBackKillTimeout;
     int mDeviceHardwareKeys;
-
     int mPointerLocationMode = 0; // guarded by mLock
 
     // The last window we were told about in focusChanged.
@@ -1439,6 +1440,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private final ScreenshotRunnable mScreenshotRunnable = new ScreenshotRunnable();
 
+    Runnable mBackLongPress = new Runnable() {
+        public void run() {
+            if (DevUtils.killForegroundApplication(mContext)) {
+                performHapticFeedbackLw(null, HapticFeedbackConstants.LONG_PRESS, false);
+                Toast.makeText(mContext, R.string.app_killed_message, Toast.LENGTH_SHORT).show();
+                // Do nothing; just let it go.
+            }
+        }
+    };
+
     @Override
     public void showGlobalActions() {
         mHandler.removeMessages(MSG_DISPATCH_SHOW_GLOBAL_ACTIONS);
@@ -1748,6 +1759,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 com.android.internal.R.integer.config_shortPressOnSleepBehavior);
 
         mUseTvRouting = AudioSystem.getPlatformType(mContext) == AudioSystem.PLATFORM_TELEVISION;
+
+        mBackKillTimeout = mContext.getResources().getInteger(
+                com.android.internal.R.integer.config_backKillTimeout);
+
+        readConfigurationDependentBehaviors();
 
         mDeviceHardwareKeys = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
@@ -3178,6 +3194,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // Any key that is not Alt or Meta cancels Caps Lock combo tracking.
         if (mPendingCapsLockToggle && !KeyEvent.isMetaKey(keyCode) && !KeyEvent.isAltKey(keyCode)) {
             mPendingCapsLockToggle = false;
+        }
+
+        if (keyCode == KeyEvent.KEYCODE_BACK && !down) {
+            mHandler.removeCallbacks(mBackLongPress);
         }
 
         // First we always handle the home key here, so applications
