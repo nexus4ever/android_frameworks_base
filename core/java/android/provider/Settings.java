@@ -3602,6 +3602,12 @@ public final class Settings {
         public static final String BATTERY_LIGHT_LOW_COLOR = "battery_light_low_color";
 
         /**
+         * This preference enables showing the power menu on LockScreen.
+         * @hide
+         */
+        public static final String LOCKSCREEN_ENABLE_POWER_MENU = "lockscreen_enable_power_menu";
+
+        /**
          * What color to use for the battery LED while charging - medium
          * @hide
          */
