@@ -53,6 +53,9 @@ public class Build {
     /** The build NeXus4ever version */
     public static final String NEXUS = getString("ro.nexus4ever.version");
 
+    /** The build date */
+    public static final String DATE = getString("ro.build.date");
+
     /**
      * The name of the instruction set (CPU type + ABI convention) of native code.
      *
