@@ -2161,6 +2161,7 @@
          "power" = Power off
          "reboot" = Reboot
          "screenshot" = Take screenshot
+         "screenrecord" = Make screenrecording
          "torch" = Toggle torch
          "settings" = An action to launch settings
          "lockdown" = An action to lock it down
@@ -2172,6 +2173,7 @@
         <item>power</item>
         <item>reboot</item>
         <item>screenshot</item>
+        <item>screenrecord</item>
         <item>torch</item>
         <item>airplane</item>
         <item>settings</item>
