@@ -36,6 +36,7 @@
   <!-- Config Power Menu global actions-->
   <java-symbol type="string" name="global_action_reboot" />
   <java-symbol type="string" name="global_action_screenshot" />
+  <java-symbol type="string" name="global_action_screen_record" />
   <java-symbol type="string" name="global_action_torch" />
   <java-symbol type="string" name="global_action_toggle_silent_mode" />
   <java-symbol type="string" name="global_action_silent_mode_on_status" />
@@ -48,6 +49,7 @@
 
   <!-- Config Power Menu drawables-->
   <java-symbol type="drawable" name="ic_lock_power_screenshot" />
+  <java-symbol type="drawable" name="ic_lock_screen_record" />
   <java-symbol type="drawable" name="ic_lock_power_assist" />
   <java-symbol type="drawable" name="ic_lock_power_voice" />
   <java-symbol type="drawable" name="ic_lock_power_reboot" />
