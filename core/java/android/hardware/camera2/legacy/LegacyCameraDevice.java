@@ -361,20 +361,7 @@ public class LegacyCameraDevice implements AutoCloseable {
                         }
                     }
 
-                    if (!ArrayUtils.contains(sizes, s)) {
-                        if (flexibleConsumer && (s = findClosestSize(s, sizes)) != null) {
-                            sizedSurfaces.add(new Pair<>(output, s));
-                        } else {
-                            String reason = (sizes == null) ? "format is invalid." :
-                                    ("size not in valid set: " + Arrays.toString(sizes));
-                            Log.e(TAG, String.format("Surface with size (w=%d, h=%d) and format " +
-                                    "0x%x is not valid, %s", s.getWidth(), s.getHeight(),
-                                    surfaceType, reason));
-                            return BAD_VALUE;
-                        }
-                    } else {
-                        sizedSurfaces.add(new Pair<>(output, s));
-                    }
+                    sizedSurfaces.add(new Pair<>(output, s));
                     // Lock down the size before configuration
                     setSurfaceDimens(output, s.getWidth(), s.getHeight());
                 } catch (BufferQueueAbandonedException e) {
