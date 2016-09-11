@@ -50,8 +50,8 @@ public class Build {
     /** The name of the underlying board, like "goldfish". */
     public static final String BOARD = getString("ro.product.board");
 
-    /** The build PureNexus version */
-    public static final String NEXUS = getString("ro.purenexus.version");
+    /** The build nexus4ever version */
+    public static final String NEXUS = getString("ro.nexus4ever.version");
 
     /**
      * The name of the instruction set (CPU type + ABI convention) of native code.
