@@ -1763,8 +1763,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mBackKillTimeout = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_backKillTimeout);
 
-        readConfigurationDependentBehaviors();
-
         mDeviceHardwareKeys = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
 
