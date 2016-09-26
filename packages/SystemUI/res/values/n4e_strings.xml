@@ -56,4 +56,9 @@
     <string name="accessibility_quick_settings_nfc_changed_off">NFC turned off.</string>
     <!-- Announcement made when NFC changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_nfc_changed_on">NFC turned on.</string>
+
+    <!-- Expaneded Desktop QS Tile -->
+    <string name="quick_settings_expanded_desktop_label">Expanded desktop</string>
+    <string name="quick_settings_expanded_desktop">Expanded</string>
+    <string name="quick_settings_expanded_desktop_off">Normal</string>
 </resources>
