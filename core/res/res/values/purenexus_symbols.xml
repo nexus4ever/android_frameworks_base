@@ -51,4 +51,9 @@
   <java-symbol type="string" name="powermenu_screenshot" />
   <java-symbol type="drawable" name="ic_settings_powermenu" />
 
+  <!-- Powermenu animations -->
+  <java-symbol type="style" name="GlobalActionsAnimation" />
+  <java-symbol type="style" name="GlobalActionsAnimationTop" />
+  <java-symbol type="style" name="GlobalActionsAnimationEnter" />
+
 </resources>

@@ -3862,6 +3862,13 @@ public final class Settings {
         public static final String POWERMENU_SCREENSHOT = "powermenu_screenshot";
 
         /**
+         * Whether to display set of animations when prompting the power menu
+         *
+         * @hide
+         */
+        public static final String POWER_MENU_ANIMATIONS = "power_menu_animations";
+
+        /**
          * Whether to display settings in the power menu
          *
          * @hide
