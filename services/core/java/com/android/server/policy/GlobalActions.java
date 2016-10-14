@@ -64,6 +64,7 @@ import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.InputDevice;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -210,11 +211,43 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         awakenIfNecessary();
         mDialog = createDialog();
         prepareDialog();
-        WindowManager.LayoutParams attrs = mDialog.getWindow().getAttributes();
-        attrs.setTitle("GlobalActions");
-        mDialog.getWindow().setAttributes(attrs);
-        mDialog.show();
-        mDialog.getWindow().getDecorView().setSystemUiVisibility(View.STATUS_BAR_DISABLE_EXPAND);
+
+        // If we only have 1 item and it's a simple press action, just do this action.
+        if (mAdapter.getCount() == 1
+                && mAdapter.getItem(0) instanceof SinglePressAction
+                && !(mAdapter.getItem(0) instanceof LongPressAction)) {
+            ((SinglePressAction) mAdapter.getItem(0)).onPress();
+        } else {
+            WindowManager.LayoutParams attrs = mDialog.getWindow().getAttributes();
+            attrs.setTitle("GlobalActions");
+
+        boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+        int powermenuAnimations = isPrimary ? getPowermenuAnimations() : 0;
+
+        switch (powermenuAnimations) {
+           case 0:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationEnter;
+              attrs.gravity = Gravity.CENTER|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 1:
+              attrs.windowAnimations = R.style.GlobalActionsAnimation;
+              attrs.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 2:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationTop;
+              attrs.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
+           break;
+        }
+
+            mDialog.getWindow().setAttributes(attrs);
+            mDialog.show();
+            mDialog.getWindow().getDecorView().setSystemUiVisibility(View.STATUS_BAR_DISABLE_EXPAND);
+        }
+    }
+
+    private int getPowermenuAnimations() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.POWER_MENU_ANIMATIONS, 0);
     }
 
     /**
