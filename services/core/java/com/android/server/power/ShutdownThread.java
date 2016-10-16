@@ -47,6 +47,7 @@ import android.os.Vibrator;
 import android.os.SystemVibrator;
 import android.os.storage.IMountService;
 import android.os.storage.IMountShutdownObserver;
+import android.provider.Settings;
 import android.system.ErrnoException;
 import android.system.Os;
 import android.widget.ListView;
@@ -55,12 +56,15 @@ import com.android.internal.telephony.ITelephony;
 import com.android.server.pm.PackageManagerService;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.WindowManager;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
+import com.android.internal.R;
 
 public final class ShutdownThread extends Thread {
     // constants
@@ -145,6 +149,11 @@ public final class ShutdownThread extends Thread {
         boolean isPrimaryUser = UserHandle.getCallingUserId() == UserHandle.USER_SYSTEM;
 
         return advancedRebootEnabled && !mRebootSafeMode && isPrimaryUser;
+    }
+
+    private static int getPowermenuAnimations(Context context) {
+        return Settings.System.getInt(context.getContentResolver(),
+                Settings.System.POWER_MENU_ANIMATIONS, 0);
     }
 
     static void shutdownInner(final Context context, boolean confirm) {
@@ -233,6 +242,27 @@ public final class ShutdownThread extends Thread {
 
             closer.dialog = sConfirmDialog;
             sConfirmDialog.setOnDismissListener(closer);
+
+            WindowManager.LayoutParams attrs = sConfirmDialog.getWindow().getAttributes();
+
+            boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+            int powermenuAnimations = isPrimary ? getPowermenuAnimations(context) : 0;
+
+            switch (powermenuAnimations) {
+               case 0:
+                  attrs.windowAnimations = R.style.GlobalActionsAnimationEnter;
+                  attrs.gravity = Gravity.CENTER|Gravity.CENTER_HORIZONTAL;
+               break;
+               case 1:
+                  attrs.windowAnimations = R.style.GlobalActionsAnimation;
+                  attrs.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+               break;
+               case 2:
+                  attrs.windowAnimations = R.style.GlobalActionsAnimationTop;
+                  attrs.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
+               break;
+            }
+
             sConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
             sConfirmDialog.show();
         } else {
@@ -378,6 +408,25 @@ public final class ShutdownThread extends Thread {
         }
         pd.setCancelable(false);
         pd.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+
+        WindowManager.LayoutParams attrs = pd.getWindow().getAttributes();
+        boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+        int powermenuAnimations = isPrimary ? getPowermenuAnimations(context) : 0;
+
+        switch (powermenuAnimations) {
+           case 0:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationEnter;
+              attrs.gravity = Gravity.CENTER|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 1:
+              attrs.windowAnimations = R.style.GlobalActionsAnimation;
+              attrs.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 2:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationTop;
+              attrs.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
+           break;
+        }
 
         pd.show();
 
