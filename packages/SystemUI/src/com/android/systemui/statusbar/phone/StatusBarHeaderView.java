@@ -221,7 +221,6 @@ public class StatusBarHeaderView extends BaseStatusBarHeader implements View.OnC
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        ////FontSizeUtils.updateFontSize(mBatteryLevel, R.dimen.battery_level_text_size);
         FontSizeUtils.updateFontSize(mEmergencyCallsOnly,
                 R.dimen.qs_emergency_calls_only_text_size);
         FontSizeUtils.updateFontSize(mDateCollapsed, R.dimen.qs_date_collapsed_size);
@@ -354,7 +353,6 @@ public class StatusBarHeaderView extends BaseStatusBarHeader implements View.OnC
             updateSignalClusterDetachment();
         }
         mEmergencyCallsOnly.setVisibility(mExpanded && mShowEmergencyCallsOnly ? VISIBLE : GONE);
-        //mBatteryLevel.setVisibility(mExpanded ? View.VISIBLE : View.GONE);
     }
 
     private void updateSignalClusterDetachment() {
@@ -422,7 +420,6 @@ public class StatusBarHeaderView extends BaseStatusBarHeader implements View.OnC
     @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
         String percentage = NumberFormat.getPercentInstance().format((double) level / 100.0);
-        //mBatteryLevel.setText(percentage);
     }
 
     @Override
@@ -612,7 +609,6 @@ public class StatusBarHeaderView extends BaseStatusBarHeader implements View.OnC
                     + mSystemIconsContainer.getLeft();
         }
         target.batteryY = mSystemIconsSuperContainer.getTop() + mSystemIconsContainer.getTop();
-        //target.batteryLevelAlpha = getAlphaForVisibility(mBatteryLevel);
         target.settingsAlpha = getAlphaForVisibility(mSettingsButton);
         target.settingsTranslation = mExpanded
                 ? 0
@@ -673,12 +669,10 @@ public class StatusBarHeaderView extends BaseStatusBarHeader implements View.OnC
         mSettingsButton.setRotation(values.settingsRotation);
         applyAlpha(mEmergencyCallsOnly, values.emergencyCallsOnlyAlpha);
         if (!mShowingDetail && !mDetailTransitioning) {
-            // Otherwise it needs to stay invisible
             applyAlpha(mAlarmStatus, values.alarmStatusAlpha);
         }
         applyAlpha(mDateCollapsed, values.dateCollapsedAlpha);
         applyAlpha(mDateExpanded, values.dateExpandedAlpha);
-        //applyAlpha(mBatteryLevel, values.batteryLevelAlpha);
         applyAlpha(mSettingsButton, values.settingsAlpha);
         applyAlpha(mSignalCluster, values.signalClusterAlpha);
         if (!mExpanded) {
