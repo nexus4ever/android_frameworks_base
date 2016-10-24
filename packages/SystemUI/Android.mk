@@ -28,7 +28,9 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v14-preference \
     android-support-v17-leanback \
     framework-protos \
-    SystemUI-proto-tags
+    SystemUI-proto-tags \
+    android-support-v7-palette \
+    android-support-v4
 
 LOCAL_JAVA_LIBRARIES := telephony-common
 
@@ -63,3 +65,6 @@ include $(BUILD_PACKAGE)
 ifeq ($(EXCLUDE_SYSTEMUI_TESTS),)
     include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
+
+include $(call all-makefiles-under, $(LOCAL_PATH))
+
