@@ -225,6 +225,8 @@
       <item quantity="other">Screenshot für den Fehlerbericht wird in <xliff:g id="NUMBER_1">%d</xliff:g> Sekunden aufgenommen.</item>
       <item quantity="one">Screenshot für den Fehlerbericht wird in <xliff:g id="NUMBER_0">%d</xliff:g> Sekunde aufgenommen.</item>
     </plurals>
+    <string name="global_action_screenshot">Screenshot</string>
+    <string name="global_action_torch">Taschenlampe</string>
     <string name="global_action_toggle_silent_mode" msgid="8219525344246810925">"Lautlos-Modus"</string>
     <string name="global_action_silent_mode_on_status" msgid="3289841937003758806">"Ton ist AUS."</string>
     <string name="global_action_silent_mode_off_status" msgid="1506046579177066419">"Ton ist AN."</string>

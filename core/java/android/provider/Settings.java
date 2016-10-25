@@ -4010,6 +4010,33 @@ public final class Settings {
          */
         public static final String POWERMENU_POWER = "powermenu_power";
 
+        /**
+         * Whether to display power in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_TORCH = "powermenu_torch";
+
+        /**
+         * Whether to display power in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_USERS = "powermenu_users";
+
+        /**
+         * Whether to display power in the voiceassist menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_VOICEASSIST = "powermenu_voiceassist";
+        /**
+         * Whether to display power in the assist menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_ASSIST = "powermenu_assist";
+
         /** 
          * Whether to allow one finger quick settings expansion on the right side of the statusbar.
          * @hide
