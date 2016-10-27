@@ -604,12 +604,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
             @Override
             public boolean showDuringKeyguard() {
-                return true;
+                return false;
             }
 
             @Override
             public boolean showBeforeProvisioning() {
-                return true;
+                return false;
             }
         };
     }
@@ -626,12 +626,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
             @Override
             public boolean showDuringKeyguard() {
-                return true;
+                return false;
             }
 
             @Override
             public boolean showBeforeProvisioning() {
-                return true;
+                return false;
             }
         };
     }
@@ -648,12 +648,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
             @Override
             public boolean showDuringKeyguard() {
-                return true;
+                return false;
             }
 
             @Override
             public boolean showBeforeProvisioning() {
-                return true;
+                return false;
             }
         };
     }
@@ -674,7 +674,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
             @Override
             public boolean showDuringKeyguard() {
-                return true;
+                return false;
             }
 
             @Override
