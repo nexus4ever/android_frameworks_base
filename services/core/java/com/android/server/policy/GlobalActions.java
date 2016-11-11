@@ -334,7 +334,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             } else if (GLOBAL_ACTION_KEY_SCREENSHOT.equals(actionKey)) {
                 if (Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.POWERMENU_SCREENSHOT, 1) == 1) {
-                    mItems.add(ScreenshotAction());
+                    mItems.add(new ScreenshotAction());
                 }
             } else if (GLOBAL_ACTION_KEY_TORCH.equals(actionKey)) {
                 if (Settings.System.getInt(mContext.getContentResolver(),
@@ -481,22 +481,33 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
-    private Action ScreenshotAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_screenshot,
-                R.string.global_action_screenshot) {
+    private final class ScreenshotAction extends SinglePressAction implements LongPressAction {
+        private ScreenshotAction() {
+            super(com.android.internal.R.drawable.ic_lock_power_screenshot,
+                R.string.global_action_screenshot);
+        }
 
-            public void onPress() {
-                takeScreenshot();
-            }
+        @Override
+        public boolean onLongPress() {
+            takeScreenshot(2);
+            mHandler.sendEmptyMessage(MESSAGE_DISMISS);
+            return true;
+        }
 
-            public boolean showDuringKeyguard() {
-                return true;
-            }
+        @Override
+        public boolean showDuringKeyguard() {
+            return true;
+        }
 
-            public boolean showBeforeProvisioning() {
-                return false;
-            }
-        };
+        @Override
+        public boolean showBeforeProvisioning() {
+            return true;
+        }
+
+        @Override
+        public void onPress() {
+            takeScreenshot(1);
+        }
     }
 
     private CameraManager mCameraManager;
@@ -764,7 +775,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     };
 
-    private void takeScreenshot() {
+    private void takeScreenshot(int type) {
         synchronized (mScreenshotLock) {
             if (mScreenshotConnection != null) {
                 return;
@@ -781,7 +792,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                             return;
                         }
                         Messenger messenger = new Messenger(service);
-                        Message msg = Message.obtain(null, 1);
+                        Message msg = Message.obtain(null, type);
                         final ServiceConnection myConn = this;
                         Handler h = new Handler(mHandler.getLooper()) {
                             @Override
@@ -799,7 +810,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                         msg.arg1 = msg.arg2 = 0;
 
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(750);
                         } catch (InterruptedException ie) {
                         }
 
