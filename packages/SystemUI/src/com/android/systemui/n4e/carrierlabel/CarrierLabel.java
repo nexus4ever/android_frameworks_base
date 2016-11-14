@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.systemui.nitrogen.carrierlabel;
+package com.android.systemui.n4e.carrierlabel;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -23,7 +23,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.os.Handler;
-import com.android.internal.util.nitrogen.NitrogenUtils;
+import com.android.internal.util.n4e.NexusUtils;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -34,7 +34,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.internal.telephony.TelephonyIntents;
-import com.android.systemui.nitrogen.carrierlabel.SpnOverride;
+import com.android.systemui.n4e.carrierlabel.SpnOverride;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -94,7 +94,7 @@ public class CarrierLabel extends TextView {
                         intent.getStringExtra(TelephonyIntents.EXTRA_SPN),
                         intent.getBooleanExtra(TelephonyIntents.EXTRA_SHOW_PLMN, false),
                         intent.getStringExtra(TelephonyIntents.EXTRA_PLMN));
-                isCN = NitrogenUtils.isChineseLanguage();
+                isCN = NexusUtils.isChineseLanguage();
             }
         }
     };
