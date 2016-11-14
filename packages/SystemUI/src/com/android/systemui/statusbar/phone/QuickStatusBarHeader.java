@@ -377,7 +377,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
     private void startN4EActivity() {
         Intent nIntent = new Intent(Intent.ACTION_MAIN);
         nIntent.setClassName("com.android.settings",
-            "com.android.settings.Settings$NexusSettingsActivity");
+            "com.android.settings.Settings$PureSettingsActivity");
         mActivityStarter.startActivity(nIntent, true /* dismissShade */);
     }
 
