@@ -1,4 +1,4 @@
-package com.android.internal.util.nitrogen;
+package com.android.internal.util.n4e;
 
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;

@@ -149,7 +149,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.policy.PhoneWindow;
 import com.android.internal.policy.IShortcutService;
 import com.android.internal.statusbar.IStatusBarService;
-import com.android.internal.util.nitrogen.ActionUtils;
+import com.android.internal.util.n4e.ActionUtils;
 import com.android.internal.util.ScreenShapeHelper;
 import com.android.internal.view.RotationPolicy;
 import com.android.internal.widget.PointerLocationView;
