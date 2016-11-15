@@ -31,14 +31,16 @@
     <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
     <string name="reboot_progress">Rebooting\u2026</string>
 
+    <!-- Extended Power Menu -->
+    <string name="global_action_screenshot">Screenshot</string>
+    <string name="global_action_torch">Flashlight</string>
+    <string name="global_action_airplane">Airplane mode</string>
+    <string name="global_action_soundpanel">Sound panel</string>
+    <string name="global_action_users">User switcher</string>
+    <string name="global_action_current_user">Current</string>
+
     <!-- kill app long press back -->
     <string name="app_killed_message">Application killed </string>
-
-    <!-- screenshot in the power menu -->
-    <string name="powermenu_screenshot">Screenshot</string>
-
-    <!-- Powermenu Torch -->
-    <string name="global_action_torch">Flashlight</string>
 
     <string name="battery_style_text">Text only</string>
     <string name="battery_style_default">Default</string>

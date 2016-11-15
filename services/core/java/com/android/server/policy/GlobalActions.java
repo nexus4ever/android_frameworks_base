@@ -360,17 +360,23 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             } else if (GLOBAL_ACTION_KEY_SETTINGS.equals(actionKey)) {
                 if (Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.POWERMENU_SETTINGS, 0) != 0) {
-                mItems.add(getSettingsAction());
+                    mItems.add(getSettingsAction());
                 }
             } else if (GLOBAL_ACTION_KEY_LOCKDOWN.equals(actionKey)) {
                 if (Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.POWERMENU_LOCKDOWN, 0) != 0) {
-                mItems.add(getLockdownAction());
+                    mItems.add(getLockdownAction());
                 }
             } else if (GLOBAL_ACTION_KEY_VOICEASSIST.equals(actionKey)) {
-                mItems.add(getVoiceAssistAction());
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.POWERMENU_VOICEASSIST, 0) != 0) {
+                    mItems.add(getVoiceAssistAction());
+                }
             } else if (GLOBAL_ACTION_KEY_ASSIST.equals(actionKey)) {
-                mItems.add(getAssistAction());
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.POWERMENU_ASSIST, 0) != 0) {
+                    mItems.add(getAssistAction());
+                }
             } else {
                 Log.e(TAG, "Invalid global action key " + actionKey);
             }
@@ -473,7 +479,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private Action ScreenshotAction() {
         return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_screenshot,
-                R.string.powermenu_screenshot) {
+                R.string.global_action_screenshot) {
 
             public void onPress() {
                 takeScreenshot();
@@ -609,7 +615,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     }
 
     private Action getAssistAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_action_assist_focused,
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_assist,
                 R.string.global_action_assist) {
             @Override
             public void onPress() {
@@ -631,7 +637,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     }
 
     private Action getVoiceAssistAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_voice_search,
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_voice,
                 R.string.global_action_voice_assist) {
             @Override
             public void onPress() {

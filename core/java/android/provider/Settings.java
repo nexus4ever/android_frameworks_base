@@ -3955,6 +3955,19 @@ public final class Settings {
         public static final String POWERMENU_USERS = "powermenu_users";
 
         /**
+         * Whether to display power in the voiceassist menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_VOICEASSIST = "powermenu_voiceassist";
+        /**
+         * Whether to display power in the assist menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_ASSIST = "powermenu_assist";
+
+        /**
          * Whether to use the MTP by default after connecting to PC
          * @hide
          */
