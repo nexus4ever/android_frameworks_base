@@ -28,7 +28,7 @@
         android:paddingEnd="@dimen/status_bar_clock_end_padding"
         android:gravity="center"
         android:visibility="gone"/>
-    <com.android.systemui.nitrogen.carrierlabel.CarrierLabel
+    <com.android.systemui.n4e.carrierlabel.CarrierLabel
         android:id="@+id/statusbar_carrier_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
