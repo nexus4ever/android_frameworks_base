@@ -670,9 +670,13 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 R.string.global_action_assist) {
             @Override
             public void onPress() {
-                Intent intent = new Intent(Intent.ACTION_ASSIST);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                mContext.startActivity(intent);
+                try {
+                    Intent intent = new Intent(Intent.ACTION_ASSIST);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    mContext.startActivity(intent);
+                } catch (Exception e) {
+                    Log.e(TAG, "Error while trying to start activity.", e);
+                }
             }
 
             @Override
@@ -692,9 +696,13 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 R.string.global_action_voice_assist) {
             @Override
             public void onPress() {
-                Intent intent = new Intent(Intent.ACTION_VOICE_ASSIST);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                mContext.startActivity(intent);
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VOICE_ASSIST);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    mContext.startActivity(intent);
+                } catch (Exception e) {
+                    Log.e(TAG, "Error while trying to start activity.", e);
+                }
             }
 
             @Override
