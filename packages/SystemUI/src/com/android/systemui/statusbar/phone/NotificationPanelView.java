@@ -2444,8 +2444,9 @@ public class NotificationPanelView extends PanelView implements
                     Settings.System.DOUBLE_TAP_SLEEP_GESTURE), false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_SMART_PULLDOWN), false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.Secure.getUriFor(
-                    Settings.Secure.LOCK_QS_DISABLED), false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD),
+                    false, this, UserHandle.USER_ALL);	
             update();
         }
 
@@ -2473,8 +2474,9 @@ public class NotificationPanelView extends PanelView implements
                     UserHandle.USER_CURRENT);
             mQsSmartPullDown = Settings.System.getIntForUser(resolver,
                     Settings.System.QS_SMART_PULLDOWN, 0, UserHandle.USER_CURRENT);
-            mQsSecureExpandDisabled = Settings.Secure.getIntForUser(resolver,
-                    Settings.Secure.LOCK_QS_DISABLED, 0, UserHandle.USER_CURRENT) == 1;
+            mQsSecureExpandDisabled = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD, 1,
+                    UserHandle.USER_CURRENT) == 1;
         }
     }
 }
