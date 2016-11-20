@@ -3816,6 +3816,12 @@ public final class Settings {
          */
 
         /**
+         * Whether user is allowed to pull down quick settings on secure keyguard.
+         * @hide
+         */
+        public static final String STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD = "status_bar_locked_on_secure_keyguard";
+
+        /**
          * Volume keys control cursor in text fields (default is 1)
          * 0 - Disabled
          * 1 - Volume up/down moves cursor left/right
@@ -5800,13 +5806,6 @@ public final class Settings {
          */
         @Deprecated
         public static final String LOCK_PATTERN_VISIBLE = "lock_pattern_visible_pattern";
-
-        /**
-         * Disable expanding quick settings on secure lock screens
-         *
-         * @hide
-         */
-        public static final String LOCK_QS_DISABLED = "lockscreen_qs_disabled";
 
         /**
          * Whether lock pattern will vibrate as user enters (0 = false, 1 =
