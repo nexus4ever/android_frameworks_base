@@ -100,4 +100,11 @@
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Peeking notification are snoozing for 1 minute.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Peeking notifications are snoozing for <xliff:g id="number">%d</xliff:g> minutes.</string>
 
+    <!-- Navbar tuner -->
+    <string name="navbar_tuner_title">Navbar tuner</string>
+    <!-- statusbar items tuner -->
+    <string name="statusbar_icons_blacklist">Status bar icons</string>
+    <!-- notification controls -->
+    <string name="tuner_notification_control">Power notification controls</string>
+
 </resources>
