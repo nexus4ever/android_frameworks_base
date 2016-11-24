@@ -51,6 +51,7 @@ import com.android.systemui.R;
 import com.android.systemui.RecentsComponent;
 import com.android.systemui.stackdivider.Divider;
 import com.android.systemui.statusbar.policy.DeadZone;
+import com.android.systemui.singlehandmode.SlideTouchEvent;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -105,6 +106,7 @@ public class NavigationBarView extends LinearLayout {
 
     private final SparseArray<ButtonDispatcher> mButtonDisatchers = new SparseArray<>();
     private Configuration mConfiguration;
+    private SlideTouchEvent mSlideTouchEvent;
 
     private NavigationBarInflaterView mNavigationInflaterView;
     private GestureDetector mDoubleTapGesture;
@@ -196,7 +198,7 @@ public class NavigationBarView extends LinearLayout {
         mVertical = false;
         mShowMenu = false;
         mGestureHelper = new NavigationBarGestureHelper(context);
-
+        mSlideTouchEvent = new SlideTouchEvent(context);
         mConfiguration = new Configuration();
         mConfiguration.updateFrom(context.getResources().getConfiguration());
         updateIcons(context, Configuration.EMPTY, mConfiguration);
@@ -240,6 +242,7 @@ public class NavigationBarView extends LinearLayout {
                     Settings.System.DOUBLE_TAP_SLEEP_NAVBAR, 0) == 1)
             mDoubleTapGesture.onTouchEvent(event);
 
+        mSlideTouchEvent.handleTouchEvent(event);
         if (mGestureHelper.onTouchEvent(event)) {
             return true;
         }
@@ -253,6 +256,7 @@ public class NavigationBarView extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        mSlideTouchEvent.handleTouchEvent(event);
         return mGestureHelper.onInterceptTouchEvent(event);
     }
 
