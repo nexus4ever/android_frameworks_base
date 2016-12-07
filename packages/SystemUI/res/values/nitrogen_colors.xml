@@ -33,4 +33,8 @@
     <color name="system_secondary_color">@*android:color/material_pixel_blue_light</color>
     <color name="system_accent_color">@*android:color/material_pixel_blue_bright</color>
 
+    <!-- Floating action button -->
+    <color name="fab_color">@*android:color/material_deep_teal_500</color>
+    <color name="floating_action_button_icon_color">#ffffff</color>
+
 </resources>
