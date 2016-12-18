@@ -206,6 +206,7 @@ public class PackageInstallerSession extends IPackageInstallerSession.Stub {
                     params.appPackageName, PackageManager.GET_SIGNATURES /*flags*/, userId);
             final ApplicationInfo appInfo = mPm.getApplicationInfo(
                     params.appPackageName, 0, userId);
+
             synchronized (mLock) {
                 if (msg.obj != null) {
                     mRemoteObserver = (IPackageInstallObserver2) msg.obj;

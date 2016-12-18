@@ -4638,6 +4638,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
             Slog.wtf(TAG, "BUG: " + nai + " changed immutable capabilities: "
                     + nai.networkCapabilities + " -> " + networkCapabilities);
         }
+
         // Don't modify caller's NetworkCapabilities.
         networkCapabilities = new NetworkCapabilities(networkCapabilities);
         if (nai.lastValidated) {
@@ -4655,7 +4656,9 @@ public class ConnectivityService extends IConnectivityManager.Stub
         } else {
             networkCapabilities.addCapability(NET_CAPABILITY_FOREGROUND);
         }
+
         if (Objects.equals(nai.networkCapabilities, networkCapabilities)) return;
+
         final String oldPermission = getNetworkPermission(nai.networkCapabilities);
         final String newPermission = getNetworkPermission(networkCapabilities);
         if (!Objects.equals(oldPermission, newPermission) && nai.created && !nai.isVPN()) {
