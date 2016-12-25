@@ -582,9 +582,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.STATUS_BAR_SHOW_CARRIER))) {
                 update();
                 updateCarrier();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.NAV_BAR_DYNAMIC))) {
-                    mNavigationController.updateNavbarOverlay(mContext.getResources());
             }
 
             update();
